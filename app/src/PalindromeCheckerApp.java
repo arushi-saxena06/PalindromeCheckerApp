@@ -1,23 +1,28 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-    String s="madam";
-    for(int i = 0; i < s.length()/2; i++) {
-        if(s.charAt(i) != s.charAt(s.length()-1-i)) {
-            System.out.println("Is it a palindrome? : false");
-            return;
-        }
-    System.out.println("Is it a palindrome? : true");
-    }
+        String input = "radar";
 
-    //UC3
-    String reversed = "";
-    for (int  i=s.length()-1; i>=0; i--){
-        reversed = reversed + s.charAt(i);
+        char[] chars = input.toCharArray();
+
+        int start = 0;
+        int end = chars.length - 1;
+
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        if (isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not a Palindrome");
+        }
     }
-    if (s.equals(reversed)){
-        System.out.println("Is it a palindrome? : true");
-    } else {
-        System.out.println("Is it a palindrome? : false");
-    }
-}}
+}
