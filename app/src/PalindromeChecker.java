@@ -1,20 +1,27 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
 
 public class PalindromeChecker {
+
     public static void main(String[] args) {
 
-        String input = "madam";
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
 
-        Stack<Character> stack = new Stack<>();
+        String str = input.replaceAll("\\s+", "").toLowerCase();
 
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            deque.addLast(str.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
@@ -25,5 +32,7 @@ public class PalindromeChecker {
         } else {
             System.out.println("Not a Palindrome");
         }
+
+        sc.close();
     }
 }
